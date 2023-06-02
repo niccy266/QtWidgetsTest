@@ -19,7 +19,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        graphicspane.cpp
+        QSFMLCanvas.cpp
+        MyCanvas.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
