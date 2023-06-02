@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <Qwidget>
+#include<iostream>
 
-class graphicspane
+class graphicspane : public QWidget, public sf::RenderWindow
 {
 private:
    /* data */
 public:
-   public QWidget, public sf::RenderWindow
    graphicspane(/* args */);
    ~graphicspane();
 };
