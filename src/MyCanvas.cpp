@@ -11,33 +11,25 @@ private:
    void OnInit()
    {
       // Load the image
-      myImage.LoadFromFile("datas/qt/sfml.png");
+      myImage.loadFromFile("~/Desktop/passion_flower.jpg");
 
       // Setup the sprite
-      mySprite.SetImage(myImage);
-      mySprite.SetCenter(mySprite.GetSize() / 2.f);
+      mySprite.setTexture(myImage);
+      mySprite.setOrigin(myImage.getSize() / 2.f);
    }
 
    void OnUpdate()
    {
       // Clear screen
-      Clear(sf::Color(0, 128, 0));
+      clear(sf::Color(0, 128, 0));
 
       // Rotate the sprite
-      mySprite.Rotate(GetFrameTime() * 100.f);
+      mySprite.rotate(clock.getElapsedTime().asMilliseconds() * 100.f);
 
       // Draw it
-      Draw(mySprite);
+      draw(mySprite);
    }
 
-   sf::Image myImage;
+   sf::Texture myImage;
    sf::Sprite mySprite;
 };
-
-MyCanvas::MyCanvas()
-{
-}
-
-MyCanvas::~MyCanvas()
-{
-}

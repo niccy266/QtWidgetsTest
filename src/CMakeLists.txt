@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         QSFMLCanvas.cpp
+        #QSFMLCanvas.h
         MyCanvas.cpp
 )
 
