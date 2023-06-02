@@ -6,15 +6,16 @@
 class QSFMLCanvas : public QWidget, public sf::RenderWindow
 {
 public:
-   QSFMLCanvas(QWidget *Parent, const QPoint &Position, const QSize &Size, unsigned int FrameTime = 0);
+   QSFMLCanvas(QWidget *Parent, const QPoint &Position, const QSize &Size, unsigned int FrameTime = 16);
    virtual ~QSFMLCanvas();
 
-   sf::Clock clock;
+   QTimer myTimer;
 
 private:
-   virtual void onInit();
 
-   virtual void onUpdate();
+   virtual void onInit() = 0;
+   
+   virtual void onUpdate() = 0;
 
    virtual QPaintEngine *paintEngine() const;
 
@@ -25,7 +26,7 @@ private:
    bool myInitialized;
 };
 
-QSFMLCanvas::QSFMLCanvas(QWidget *Parent, const QPoint &Position, const QSize &Size, unsigned int FrameTime) : QWidget(Parent),
+QSFMLCanvas::QSFMLCanvas(QWidget *Parent, const QPoint &position, const QSize &size, unsigned int FrameTime) : QWidget(Parent),
                                                                                                                  myInitialized(false)
 {
    // Setup some states to allow direct rendering into the widget
@@ -37,9 +38,13 @@ QSFMLCanvas::QSFMLCanvas(QWidget *Parent, const QPoint &Position, const QSize &S
    setFocusPolicy(Qt::StrongFocus);
 
    // Setup the widget geometry
-   move(Position);
-   resize(Size);
+   move(position);
+   resize(size);
 
+   // Create a QTimer to trigger the widget updates
+   //myTimer = new QTimer(this); // the passed object becomes the parent of the timer
+   
+   myTimer.setInterval(FrameTime); // Update roughly every 16 milliseconds (about 60 FPS)
 }
 
 QSFMLCanvas::~QSFMLCanvas()
@@ -72,8 +77,9 @@ void QSFMLCanvas::showEvent(QShowEvent *)
       // Let the derived class do its specific stuff
       onInit();
       
-      // Setup the timer
-      clock.restart();
+      // Setup the timer to trigger a refresh at specified framerate
+      connect(&myTimer, SIGNAL(timeout()), this, SLOT(repaint()));
+      myTimer.start();
 
       myInitialized = true;
    }

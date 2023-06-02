@@ -8,7 +8,7 @@ public:
    }
 
 private:
-   void onInit()
+   void onInit() override
    {
       // Load the image
       myImage.loadFromFile("~/Desktop/passion_flower.jpg");
@@ -18,13 +18,13 @@ private:
       mySprite.setPosition(myImage.getSize().x / 2, myImage.getSize().y /2);
    }
 
-   void onUpdate()
+   void onUpdate() override
    {
       // Clear screen
       clear(sf::Color(0, 128, 0));
 
       // Rotate the sprite
-      mySprite.rotate(clock.getElapsedTime().asMilliseconds() * 100.f);
+      mySprite.rotate(myTimer.interval() * 100.f);
 
       // Draw it
       draw(mySprite);
