@@ -19,8 +19,8 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        QSFMLCanvas.cpp
-        #QSFMLCanvas.h
+        #QSFMLCanvas.cpp
+        QSFMLCanvas.h
         MyCanvas.cpp
 )
 

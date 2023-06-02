@@ -1,4 +1,4 @@
-#include "QSFMLCanvas.cpp"
+#include "QSFMLCanvas.h"
 
 class MyCanvas : public QSFMLCanvas
 {
@@ -8,17 +8,17 @@ public:
    }
 
 private:
-   void OnInit()
+   void onInit()
    {
       // Load the image
       myImage.loadFromFile("~/Desktop/passion_flower.jpg");
 
       // Setup the sprite
       mySprite.setTexture(myImage);
-      mySprite.setOrigin(myImage.getSize() / 2.f);
+      mySprite.setPosition(myImage.getSize().x / 2, myImage.getSize().y /2);
    }
 
-   void OnUpdate()
+   void onUpdate()
    {
       // Clear screen
       clear(sf::Color(0, 128, 0));
