@@ -3,6 +3,8 @@
       "qpushbutton": "cpp",
       "__config": "cpp",
       "__nullptr": "cpp",
-      "qwidget": "cpp"
-   }
+      "qwidget": "cpp",
+      "*.ipp": "cpp"
+   },
+   "C_Cpp.errorSquiggles": "disabled"
 }

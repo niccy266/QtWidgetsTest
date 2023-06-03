@@ -1,22 +1,20 @@
-#include "mainwindow.h"
-
 #include <QApplication>
-#include <QPushButton>
+#include <QFrame>
+#include "MyCanvas.cpp"
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication App(argc, argv);
 
-    QPushButton button;
-    button.setText("My text");
-    button.setToolTip("A tooltip");
+    // Create the main frame
+    QFrame* MainFrame = new QFrame;
+    MainFrame->setWindowTitle("Qt SFML");
+    MainFrame->resize(400, 400);
+    MainFrame->show();
 
-    QFont font("Courier");
-    button.setFont(font);
+    // Create a SFML view inside the main frame
+    MyCanvas* SFMLView = new MyCanvas(MainFrame, QPoint(20, 20), QSize(360, 360));
+    SFMLView->show();
 
-    button.show();
-
-    return a.exec();
+    return App.exec();
 }
