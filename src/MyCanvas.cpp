@@ -1,16 +1,19 @@
 #include "MyCanvas.h"
+#include <SFML/Graphics/Image.hpp>
 
 MyCanvas::MyCanvas(QWidget *Parent) : QSfmlWidget(Parent)
 {
 }
 
-void MyCanvas::onInit()
+bool MyCanvas::onInit()
 {
-   fprintf(stdout, "setting up MyCanvas");
+   fprintf(stdout, "setting up MyCanvas \n");
 
    // Load the image
-   if(!myImage.loadFromFile("${workspaceFolder}/image/passion_flower.jpg")) {
+   sf::Texture myImage;
+   if(!myImage.loadFromFile("~/passion_flower.jpg")) {
       fprintf(stdout, "failed to load image");
+      return false
    }
       
 
@@ -22,6 +25,8 @@ void MyCanvas::onInit()
    m_rect.setPosition(100, 200);
    m_rect.setSize(sf::Vector2f(100, 50));
    m_rect.setFillColor(sf::Color::Red);
+
+   return true;
 }
 
 

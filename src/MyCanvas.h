@@ -11,12 +11,11 @@ public:
    MyCanvas(QWidget *parent = nullptr);
 
    /// @brief Code to run when widget is created
-   void onInit() override;
+   bool onInit() override;
    void onUpdate() override;
 
 private:
    sf::RectangleShape m_rect;
-   sf::Texture myImage;
    sf::Sprite mySprite;
 };
 #endif // MYCANVAS_H
