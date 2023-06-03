@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QFrame>
-#include "MyCanvas.cpp"
+#include "MyCanvas.h"
 
 int main(int argc, char **argv)
 {
@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     MainFrame->show();
 
     // Create a SFML view inside the main frame
-    MyCanvas* SFMLView = new MyCanvas(MainFrame, QPoint(20, 20), QSize(360, 360));
+    MyCanvas* SFMLView = new MyCanvas(MainFrame);
     SFMLView->show();
 
     return App.exec();

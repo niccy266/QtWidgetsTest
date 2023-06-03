@@ -1,36 +1,30 @@
-#pragma once
-#include "QSFMLCanvas.h"
+#include "MyCanvas.h"
 
-class MyCanvas : public QSFMLCanvas
+MyCanvas::MyCanvas(QWidget *Parent) : QSfmlWidget(Parent)
 {
-public:
-   MyCanvas(QWidget *Parent, const QPoint &Position, const QSize &Size) : QSFMLCanvas(Parent, Position, Size)
-   {
-   }
+}
 
-private:
-   void onInit() override
-   {
-      // Load the image
-      myImage.loadFromFile("~/Desktop/passion_flower.jpg");
+void MyCanvas::onInit()
+{
+   fprintf(stdout, "setting up MyCanvas");
 
-      // Setup the sprite
-      mySprite.setTexture(myImage);
-      mySprite.setPosition(myImage.getSize().x / 2, myImage.getSize().y /2);
-   }
+   // Load the image
+   myImage.loadFromFile("~/Desktop/passion_flower.jpg");
 
-   void onUpdate() override
-   {
-      // Clear screen
-      clear(sf::Color(0, 128, 0));
+   // Setup the sprite
+   mySprite.setTexture(myImage);
+   mySprite.setPosition(myImage.getSize().x / 2, myImage.getSize().y / 2);
+   draw(mySprite);
+}
 
-      // Rotate the sprite
-      mySprite.rotate(myTimer.interval() * 100.f);
+void MyCanvas::onUpdate()
+{
+   // Clear screen
+   clear(sf::Color(0, 128, 0));
 
-      // Draw it
-      draw(mySprite);
-   }
+   // Rotate the sprite
+   mySprite.rotate(m_timer.interval() * 100.f);
 
-   sf::Texture myImage;
-   sf::Sprite mySprite;
-};
+   // Draw it
+   draw(mySprite);
+}
