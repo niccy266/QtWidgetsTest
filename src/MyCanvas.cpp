@@ -5,7 +5,7 @@ MyCanvas::MyCanvas(QWidget *Parent) : QSfmlWidget(Parent)
 {
 }
 
-bool MyCanvas::onInit()
+void MyCanvas::onInit()
 {
    fprintf(stdout, "setting up MyCanvas \n");
 
@@ -13,7 +13,6 @@ bool MyCanvas::onInit()
    sf::Texture myImage;
    if(!myImage.loadFromFile("~/passion_flower.jpg")) {
       fprintf(stdout, "failed to load image");
-      return false
    }
       
 
@@ -25,8 +24,6 @@ bool MyCanvas::onInit()
    m_rect.setPosition(100, 200);
    m_rect.setSize(sf::Vector2f(100, 50));
    m_rect.setFillColor(sf::Color::Red);
-
-   return true;
 }
 
 
