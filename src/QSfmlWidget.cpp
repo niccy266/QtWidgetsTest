@@ -25,7 +25,7 @@ void QSfmlWidget::showEvent(QShowEvent * event)
 {
    Q_UNUSED(event);
 
-   if (m_initialized)
+   if (!m_initialized)
    {
       // Create the SFML window with the widget handle
       sf::RenderWindow::create(reinterpret_cast<sf::WindowHandle>(winId()));

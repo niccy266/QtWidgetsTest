@@ -10,6 +10,7 @@ class MyCanvas : public QSfmlWidget
 public:
    MyCanvas(QWidget *parent = nullptr);
 
+   /// @brief Code to run when widget is created
    void onInit() override;
    void onUpdate() override;
 

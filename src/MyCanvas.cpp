@@ -9,13 +9,21 @@ void MyCanvas::onInit()
    fprintf(stdout, "setting up MyCanvas");
 
    // Load the image
-   myImage.loadFromFile("~/Desktop/passion_flower.jpg");
+   if(!myImage.loadFromFile("${workspaceFolder}/image/passion_flower.jpg")) {
+      fprintf(stdout, "failed to load image");
+   }
+      
 
    // Setup the sprite
    mySprite.setTexture(myImage);
    mySprite.setPosition(myImage.getSize().x / 2, myImage.getSize().y / 2);
    draw(mySprite);
+
+   m_rect.setPosition(100, 200);
+   m_rect.setSize(sf::Vector2f(100, 50));
+   m_rect.setFillColor(sf::Color::Red);
 }
+
 
 void MyCanvas::onUpdate()
 {
@@ -27,4 +35,5 @@ void MyCanvas::onUpdate()
 
    // Draw it
    draw(mySprite);
+   draw(m_rect);
 }

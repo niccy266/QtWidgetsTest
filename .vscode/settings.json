@@ -5,7 +5,8 @@
       "__nullptr": "cpp",
       "qwidget": "cpp",
       "*.ipp": "cpp",
-      "*.moc": "cpp"
+      "*.moc": "cpp",
+      "algorithm": "cpp"
    },
    "C_Cpp.errorSquiggles": "disabled"
 }
