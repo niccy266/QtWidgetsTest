@@ -1,4 +1,5 @@
 #include "QSfmlWidget.h"
+#include <iostream>
 
 QSfmlWidget::QSfmlWidget(QWidget *parent, unsigned int frameTime)
     : QWidget(parent),
@@ -42,10 +43,14 @@ void QSfmlWidget::paintEvent(QPaintEvent *event)
 {
    Q_UNUSED(event);
 
-   RenderWindow::clear(sf::Color::White);
+
+   //std::cout << "clearing screen QSfmlWidget.cpp\n" << std::endl;
+   RenderWindow::clear(sf::Color::Blue);
    // Let the derived class do its specific stuff
+   //std::cout << "calling on update\n" << std::endl;
    onUpdate();
    // Display on screen
+   //std::cout << "displaying\n" << std::endl;
    RenderWindow::display();
 }
 

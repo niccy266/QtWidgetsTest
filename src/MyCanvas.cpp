@@ -3,6 +3,7 @@
 
 MyCanvas::MyCanvas(QWidget *Parent) : QSfmlWidget(Parent)
 {
+   setFixedSize(QSize(400, 400));
 }
 
 void MyCanvas::onInit()
@@ -10,15 +11,25 @@ void MyCanvas::onInit()
    fprintf(stdout, "setting up MyCanvas \n");
 
    // Load the image
-   sf::Texture myImage;
-   if(!myImage.loadFromFile("~/passion_flower.jpg")) {
+   sf::Image myImage;
+   if (!myImage.loadFromFile("passion_flower.jpg"))
+   {
       fprintf(stdout, "failed to load image");
+      return;
    }
-      
+   sf::Texture myTexture;
+   if (!myTexture.loadFromImage(myImage))
+   {
+      fprintf(stdout, "failed to load image to texture");
+      return;
+   }
+   fprintf(stdout, "Loaded image texture in MyCanvas.cpp");
 
    // Setup the sprite
-   mySprite.setTexture(myImage);
-   mySprite.setPosition(myImage.getSize().x / 2, myImage.getSize().y / 2);
+   mySprite.setTexture(myTexture);
+   mySprite.setPosition(200, 200);
+   mySprite.setOrigin(100, 100);
+   mySprite.setScale(0.1, 0.1);
    draw(mySprite);
 
    m_rect.setPosition(100, 200);
@@ -26,14 +37,17 @@ void MyCanvas::onInit()
    m_rect.setFillColor(sf::Color::Red);
 }
 
-
 void MyCanvas::onUpdate()
 {
+
+   //std::cout << "running on update\n" << std::endl;
    // Clear screen
-   clear(sf::Color(0, 128, 0));
+   clear(sf::Color(128, 128, 0));
 
    // Rotate the sprite
    mySprite.rotate(m_timer.interval() * 100.f);
+   // Rotate the sprite
+   m_rect.rotate(m_timer.interval() * 100.f);
 
    // Draw it
    draw(mySprite);

@@ -6,7 +6,10 @@
       "qwidget": "cpp",
       "*.ipp": "cpp",
       "*.moc": "cpp",
-      "algorithm": "cpp"
+      "algorithm": "cpp",
+      "atomic": "cpp",
+      "ios": "cpp",
+      "*.tcc": "cpp"
    },
    "C_Cpp.errorSquiggles": "disabled"
 }
