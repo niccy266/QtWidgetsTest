@@ -13,7 +13,7 @@ int main(int argc, char **argv)
     MainFrame->show();
 
     // Create a SFML view inside the main frame
-    MyCanvas *SFMLView = new MyCanvas(MainFrame, 200);
+    MyCanvas *SFMLView = new MyCanvas(MainFrame, 10);
     SFMLView->show();
 
     /* sf::Texture texture;

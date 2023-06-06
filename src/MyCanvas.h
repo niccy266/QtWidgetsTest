@@ -16,7 +16,9 @@ public:
 
 private:
    sf::RectangleShape m_rect;
+   sf::Texture myTexture;
    sf::Sprite mySprite;
+
 };
 #endif // MYCANVAS_H
 

@@ -19,7 +19,8 @@ void MyCanvas::onInit()
       fprintf(stdout, "failed to load image");
       return;
    }
-   sf::Texture myTexture;
+   
+   
    if (!myTexture.loadFromImage(myImage))
    {
       fprintf(stdout, "failed to load image to texture");
@@ -27,8 +28,14 @@ void MyCanvas::onInit()
    }
    fprintf(stdout, "Loaded image texture in MyCanvas.cpp \n");
 
+
+   mySprite.setPosition(200, 200);
+   mySprite.setOrigin(100, 100);
+   mySprite.setScale(0.1, 0.1);
+
    // Setup the sprite
-   mySprite.setTexture(myTexture);
+   mySprite.setTexture(myTexture, true);
+
    mySprite.setPosition(200, 200);
    mySprite.setOrigin(100, 100);
    mySprite.setScale(0.1, 0.1);
@@ -49,9 +56,9 @@ void MyCanvas::onUpdate()
    clear(sf::Color(128, 128, 0));
 
    // Rotate the sprite
-   mySprite.rotate(frameTime * 0.01f);
+   //mySprite.rotate(frameTime * -0.01f);
    // Rotate the sprite
-   m_rect.rotate(frameTime * 0.01f);
+   //m_rect.rotate(frameTime * 0.10f);
 
 
    //m_rect.setPosition(100, 200);
