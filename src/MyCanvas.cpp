@@ -1,7 +1,9 @@
 #include "MyCanvas.h"
 #include <SFML/Graphics/Image.hpp>
+#include <fmt/format.h>
+#include <fmt/chrono.h>
 
-MyCanvas::MyCanvas(QWidget *Parent) : QSfmlWidget(Parent)
+MyCanvas::MyCanvas(QWidget *Parent, unsigned int frameTime) : QSfmlWidget(Parent, frameTime)
 {
    setFixedSize(QSize(400, 400));
 }
@@ -23,7 +25,7 @@ void MyCanvas::onInit()
       fprintf(stdout, "failed to load image to texture");
       return;
    }
-   fprintf(stdout, "Loaded image texture in MyCanvas.cpp");
+   fprintf(stdout, "Loaded image texture in MyCanvas.cpp \n");
 
    // Setup the sprite
    mySprite.setTexture(myTexture);
@@ -35,19 +37,27 @@ void MyCanvas::onInit()
    m_rect.setPosition(100, 200);
    m_rect.setSize(sf::Vector2f(100, 50));
    m_rect.setFillColor(sf::Color::Red);
+
+   std::cout << "timer activates every " << frameTime << "ms \n" << std::endl;
 }
 
 void MyCanvas::onUpdate()
 {
 
-   //std::cout << "running on update\n" << std::endl;
-   // Clear screen
+   // std::cout << "running on update\n" << std::endl;
+   //  Clear screen
    clear(sf::Color(128, 128, 0));
 
    // Rotate the sprite
-   mySprite.rotate(m_timer.interval() * 100.f);
+   mySprite.rotate(frameTime * 0.01f);
    // Rotate the sprite
-   m_rect.rotate(m_timer.interval() * 100.f);
+   m_rect.rotate(frameTime * 0.01f);
+
+
+   //m_rect.setPosition(100, 200);
+
+   //auto timer_count = std::chrono::round<std::chrono::milliseconds>(m_timer.remainingTimeAsDuration());
+   //std::cout << m_timer.remainingTime() << std::endl;
 
    // Draw it
    draw(mySprite);

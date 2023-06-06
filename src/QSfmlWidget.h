@@ -17,10 +17,11 @@ public:
     virtual void paintEvent(QPaintEvent *event) override;
     virtual void onInit();
     virtual void onUpdate();
-    QTimer m_timer;
+    int frameTime;
 
 private:
     bool m_initialized;
+    QTimer m_timer;
 };
 
 #endif // QSFMLWIDGET_H

@@ -3,7 +3,8 @@
 
 QSfmlWidget::QSfmlWidget(QWidget *parent, unsigned int frameTime)
     : QWidget(parent),
-      m_initialized(false)
+      m_initialized(false),
+      frameTime(frameTime)
 {
    // Setup some states to allow direct rendering into the widget
    setAttribute(Qt::WA_PaintOnScreen);
@@ -12,6 +13,8 @@ QSfmlWidget::QSfmlWidget(QWidget *parent, unsigned int frameTime)
 
    // Set strong focus to enable keyboard events to be received
    setFocusPolicy(Qt::StrongFocus);
+
+
 
    /* // Setup the widget geometry
    move(position);
@@ -33,8 +36,9 @@ void QSfmlWidget::showEvent(QShowEvent * event)
       // Let the derived class do its specific stuff
       onInit();
       // Setup the timer to trigger a refresh at specified framerate
-      connect(&m_timer, SIGNAL(timeout()), this, SLOT(repaint()));
-      m_timer.start();
+      connect(&m_timer, SIGNAL(timeout()), this, SLOT(update()));
+      m_timer.start(frameTime);
+      std::cout << m_timer.interval() << std::endl;
       m_initialized = true;
    }
 }

@@ -8,7 +8,7 @@ class MyCanvas : public QSfmlWidget
 {
 
 public:
-   MyCanvas(QWidget *parent = nullptr);
+   MyCanvas(QWidget *parent = nullptr, unsigned int frameTime = 0);
 
    /// @brief Code to run when widget is created
    void onInit() override;
