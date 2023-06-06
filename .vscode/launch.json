@@ -8,7 +8,7 @@
          "name": "(lldb) Launch",
          "type": "cppdbg",
          "request": "launch",
-         "program": "${workspaceFolder}/build/widgetsTest.app/Contents/MacOS/widgetsTest",
+         "program": "${workspaceFolder}/build/src/widgetsTest.app/Contents/MacOS/widgetsTest",
          "args": [],
          "stopAtEntry": false,
          "cwd": "${fileDirname}",

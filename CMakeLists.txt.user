@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 10.0.1, 2023-06-02T12:34:49. -->
+<!-- Written by QtCreator 10.0.1, 2023-06-03T18:18:39. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -401,7 +401,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/niccy/Code/QT/build-widgetsTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug/widgetsTest.app/Contents/MacOS</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/niccy/Code/QT/build-widgetsTest-Desktop_arm_darwin_generic_mach_o_64bit-Debug/src/widgetsTest.app/Contents/MacOS</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

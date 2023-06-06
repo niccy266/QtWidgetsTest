@@ -1,46 +1,72 @@
-#pragma once
-#include "QSFMLCanvas.h"
-#include <QTimer>
-#include <SFML/Graphics.hpp>
+#include "MyCanvas.h"
+#include <SFML/Graphics/Image.hpp>
+#include <fmt/format.h>
+#include <fmt/chrono.h>
 
-class MyCanvas : public QSFMLCanvas
+MyCanvas::MyCanvas(QWidget *Parent, unsigned int frameTime) : QSfmlWidget(Parent, frameTime)
 {
-public:
-   MyCanvas(QWidget *parent, const QPoint &position, const QSize &size, unsigned int frameTime)
-       : QSFMLCanvas(parent, position, size, frameTime)
+   setFixedSize(QSize(400, 400));
+}
+
+void MyCanvas::onInit()
+{
+   fprintf(stdout, "setting up MyCanvas \n");
+
+   // Load the image
+   sf::Image myImage;
+   if (!myImage.loadFromFile("passion_flower.jpg"))
    {
-      // Set up a QTimer to trigger the SFMLWidget updates
-      connect(&myTimer, SIGNAL(timeout()), this, SLOT(repaint()));
-      myTimer.setInterval(frameTime);
-      myTimer.start(frameTime);
-      ; // Update according to the provided frame time
+      fprintf(stdout, "failed to load image");
+      return;
    }
-
-private:
-   void onInit() override
+   
+   
+   if (!myTexture.loadFromImage(myImage))
    {
-      // Load the image
-      myImage.loadFromFile("~/Desktop/passion_flower.jpg");
-
-      // Setup the sprite
-      mySprite.setTexture(myImage);
-      mySprite.setOrigin(myImage.getSize().x / 2.f, myImage.getSize().y / 2.f);
-      mySprite.setPosition(myImage.getSize().x / 2.f, myImage.getSize().y / 2.f);
+      fprintf(stdout, "failed to load image to texture");
+      return;
    }
+   fprintf(stdout, "Loaded image texture in MyCanvas.cpp \n");
 
-   void onUpdate() override
-   {
-      // Clear the screen
-      clear(sf::Color(0, 128, 0));
 
-      // Rotate the sprite
-      mySprite.rotate(myTimer.interval() * 100.f);
+   mySprite.setPosition(200, 200);
+   mySprite.setOrigin(100, 100);
+   mySprite.setScale(0.1, 0.1);
 
-      // Draw the sprite
-      draw(mySprite);
-   }
+   // Setup the sprite
+   mySprite.setTexture(myTexture, true);
 
-   sf::Texture myImage;
-   sf::Sprite mySprite;
-   QTimer myTimer;
-};
+   mySprite.setPosition(200, 200);
+   mySprite.setOrigin(100, 100);
+   mySprite.setScale(0.1, 0.1);
+   draw(mySprite);
+
+   m_rect.setPosition(100, 200);
+   m_rect.setSize(sf::Vector2f(100, 50));
+   m_rect.setFillColor(sf::Color::Red);
+
+   std::cout << "timer activates every " << frameTime << "ms \n" << std::endl;
+}
+
+void MyCanvas::onUpdate()
+{
+
+   // std::cout << "running on update\n" << std::endl;
+   //  Clear screen
+   clear(sf::Color(128, 128, 0));
+
+   // Rotate the sprite
+   //mySprite.rotate(frameTime * -0.01f);
+   // Rotate the sprite
+   //m_rect.rotate(frameTime * 0.10f);
+
+
+   //m_rect.setPosition(100, 200);
+
+   //auto timer_count = std::chrono::round<std::chrono::milliseconds>(m_timer.remainingTimeAsDuration());
+   //std::cout << m_timer.remainingTime() << std::endl;
+
+   // Draw it
+   draw(mySprite);
+   draw(m_rect);
+}
